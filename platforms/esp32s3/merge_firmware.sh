@@ -17,5 +17,5 @@ esptool.py --chip esp32s3 merge_bin --flash_mode dio --flash_freq 80m --flash_si
     0x10000 build/esp32s3.bin \
     0x8000 build/partition_table/partition-table.bin \
     0xd000 build/ota_data_initial.bin \
-    0x510000 ../../../build/desktop/AssetPool.bin \
+    0x510000 ../../build/desktop/AssetPool.bin \
     -o output/$1

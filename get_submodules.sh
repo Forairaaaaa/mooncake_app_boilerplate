@@ -23,15 +23,18 @@ echo "> $(pwd)"
 
 echo "> :)"
 
-# ESP32C6
-echo "> fetching submodules for esp32c6 build.."
+# Add your submodule fetching here
+# ...
 
-cd $root_dir
-mkdir platforms/esp32c6/components
-cd platforms/esp32c6/components
-echo "> $(pwd)"
+# # ESP32S3
+# echo "> fetching submodules for esp32s3 build.."
 
-git clone https://github.com/bblanchon/ArduinoJson.git
-git clone https://github.com/Forairaaaaa/arduino_lite.git
+# cd $root_dir
+# mkdir platforms/esp32s3/components
+# cd platforms/esp32s3/components
+# echo "> $(pwd)"
 
-echo "> done"
+# git clone https://github.com/bblanchon/ArduinoJson.git
+# git clone https://github.com/Forairaaaaa/arduino_lite.git
+
+# echo "> done"
