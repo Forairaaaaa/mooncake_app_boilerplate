@@ -9,25 +9,15 @@
  *
  */
 #pragma once
+#include <cstdint>
 #include <functional>
 #include <vector>
-#ifndef ESP_PLATFORM
-#define LGFX_USE_V1
-#include <LGFX_AUTODETECT.hpp>
-#include <LovyanGFX.hpp>
-#include <cstdint>
-#include <iostream>
-#include <string>
+#include <M5GFX.h>
 #include "utils/lgfx_fx/lgfx_fx.h"
 #include "types.h"
-#else
-#include "utils/lgfx_fx/lgfx_fx.h"
-#include <LovyanGFX.hpp>
-#include "types.h"
-#endif
 
 /**
- * @brief Singleton like pattern to simplify hal's getter
+ * @brief Provide a dingleton to abstract hardware methods
  * 1) Inherit and override methods to create a specific hal
  * 2) Use HAL::Inject() to inject your hal
  * 3) Use HAL:Get() to get this hal wherever you want

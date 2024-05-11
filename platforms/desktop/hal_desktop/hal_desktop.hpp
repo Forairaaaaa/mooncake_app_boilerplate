@@ -9,17 +9,13 @@
  *
  */
 #pragma once
-#include "spdlog/spdlog.h"
+#include <mooncake.h>
+#include <M5GFX.h>
+#include "LGFX_AutoDetect_sdl.hpp"
+#include <hal/hal.h>
 #include <cmath>
 #include <string>
 #include <vector>
-#include "lgfx/v1/LGFX_Sprite.hpp"
-#include "lgfx/v1/platforms/sdl/common.hpp"
-#define LGFX_USE_V1
-#include <hal/hal.h>
-#include "lgfx/v1/lgfx_fonts.hpp"
-#include <LGFX_AUTODETECT.hpp>
-#include <LovyanGFX.hpp>
 #include <random>
 
 class HAL_Desktop : public HAL
@@ -56,6 +52,14 @@ public:
 
         _data.config.wifiSsid = "114514";
         _data.config.wifiPassword = "1919810";
+
+        // // Add key mapping
+        // auto panel = (lgfx::Panel_sdl*)_data.display->getPanel();
+        // panel->addKeyCodeMapping(SDLK_q, 0);
+        // panel->addKeyCodeMapping(SDLK_w, 1);
+        // panel->addKeyCodeMapping(SDLK_e, 2);
+        // panel->addKeyCodeMapping(SDLK_r, 3);
+        // panel->addKeyCodeMapping(SDLK_f, 4);
     }
 
     void canvasUpdate() override { GetCanvas()->pushSprite(0, 0); }

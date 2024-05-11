@@ -16,7 +16,7 @@ namespace MOONCAKE
     namespace APPS
     {
         /**
-         * @brief Template
+         * @brief AppTemplate
          *
          */
         class AppTemplate : public APP_BASE

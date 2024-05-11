@@ -49,12 +49,10 @@ void AppTemplate::onRunning()
     // Update button state
     Button::Update();
 
-    // Handle encoder button click
-    if (Button::Encoder()->wasClicked())
+    if (Button::A()->wasClicked())
         spdlog::info("encoder button clicked");
 
-    // Check quit
-    if (Button::Side()->isHolding())
+    if (Button::A()->isHolding())
         destroyApp();
 
     // ...
