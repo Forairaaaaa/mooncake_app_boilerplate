@@ -15,7 +15,7 @@
 #include "types.h"
 
 /**
- * @brief Provide a singleton for sharing dynamic data between apps(or layers, not recommend)
+ * @brief Provide a singleton for sharing dynamic data between apps(or layers, not recommended)
  *
  */
 class SharedData
@@ -89,7 +89,7 @@ public:
     virtual SHARED_DATA::SharedData_t& borrowData() { return _data; }
 
     /**
-     * @brief Borrow data, override to unlock mutex or whatever
+     * @brief Return data, override to unlock mutex or whatever
      *
      */
     static void ReturnData() { Get()->returnData(); }
