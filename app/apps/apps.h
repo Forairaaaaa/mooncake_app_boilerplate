@@ -34,13 +34,13 @@ inline void app_run_startup_anim(MOONCAKE::Mooncake* mooncake)
 }
 
 /**
- * @brief Install launcher
+ * @brief Install and start default startup app
  *
  * @param mooncake
  */
-inline void app_install_launcher(MOONCAKE::Mooncake* mooncake)
+inline void app_install_default_startup_app(MOONCAKE::Mooncake* mooncake)
 {
-    /* -------------------------- Install launcher here ------------------------- */
+    // Launcher maybe
     // auto launcher = new MOONCAKE::APPS::AppLauncher_Packer;
     // mooncake->installApp(launcher);
     // mooncake->createApp(launcher);
