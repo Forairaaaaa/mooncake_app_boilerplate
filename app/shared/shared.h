@@ -99,6 +99,9 @@ public:
     /*                               Helper getters                               */
     /* -------------------------------------------------------------------------- */
 public:
+    static std::string AppVersion() { return Get()->appVersion(); }
+    virtual std::string appVersion() { return APP_VERSION; }
+
     // Add your hepler getter here
     // static int GetShitNum() { return GetData().shitNum; }
     // ...

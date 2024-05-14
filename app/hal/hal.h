@@ -69,9 +69,6 @@ public:
     static std::string Type() { return Get()->type(); }
     virtual std::string type() { return "Base"; }
 
-    static std::string Version() { return Get()->version(); }
-    virtual std::string version() { return APP_VERSION; }
-
     static std::string CompileDate() { return Get()->compileDate(); }
     virtual std::string compileDate() { return __DATE__; }
 

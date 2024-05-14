@@ -111,5 +111,3 @@ namespace OTA_UPGRADE
 /*                                    MISC                                    */
 /* -------------------------------------------------------------------------- */
 typedef std::function<void(const std::string& log, bool pushScreen, bool clear)> OnLogPageRenderCallback_t;
-
-#define APP_VERSION "V1.0.0"
