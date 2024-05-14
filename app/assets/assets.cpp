@@ -100,6 +100,35 @@ void AssetPool::loadFont72(LGFX_SpriteFx* lgfxDevice) {}
 /* -------------------------------------------------------------------------- */
 /*                            Static asset generate                           */
 /* -------------------------------------------------------------------------- */
+/**
+ * @brief Copy file into target as binary
+ *
+ * @param filePath
+ * @param target
+ * @return true
+ * @return false
+ */
+static bool _copy_file(std::string filePath, uint8_t* target)
+{
+    spdlog::info("try open {}", filePath);
+
+    std::ifstream file(filePath, std::ios::binary | std::ios::ate);
+    if (!file.is_open())
+    {
+        spdlog::error("open failed!", filePath);
+        return false;
+    }
+    std::streampos file_size = file.tellg();
+    file.seekg(0, std::ios::beg);
+    spdlog::info("file binary size {}", file_size);
+
+    // Copy and go
+    if (target != nullptr)
+        file.read(reinterpret_cast<char*>(target), file_size);
+    file.close();
+    return true;
+}
+
 StaticAsset_t* AssetPool::CreateStaticAsset()
 {
     auto asset_pool = new StaticAsset_t;
