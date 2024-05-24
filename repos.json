@@ -1,0 +1,17 @@
+[
+    {
+        "url": "https://github.com/Forairaaaaa/mooncake.git",
+        "path": "dependencies/mooncake",
+        "branch": "main"
+    },
+    {
+        "url": "https://github.com/Forairaaaaa/smooth_ui_toolkit.git",
+        "path": "dependencies/smooth_ui_toolkit",
+        "branch": "main"
+    },
+    {
+        "url": "https://github.com/m5stack/M5GFX.git",
+        "path": "dependencies/M5GFX",
+        "branch": "master"
+    }
+]

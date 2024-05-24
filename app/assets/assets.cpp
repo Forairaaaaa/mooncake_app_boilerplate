@@ -100,6 +100,8 @@ void AssetPool::loadFont72(LGFX_SpriteFx* lgfxDevice) {}
 /* -------------------------------------------------------------------------- */
 /*                            Static asset generate                           */
 /* -------------------------------------------------------------------------- */
+#ifndef ESP_PLATFORM
+
 /**
  * @brief Copy file into target as binary
  *
@@ -152,7 +154,6 @@ StaticAsset_t* AssetPool::CreateStaticAsset()
     return asset_pool;
 }
 
-#ifndef ESP_PLATFORM
 void AssetPool::CreateStaticAssetBin(StaticAsset_t* assetPool)
 {
     /* -------------------------------------------------------------------------- */
