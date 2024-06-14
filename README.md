@@ -25,3 +25,38 @@ Cpp cross-platform application boilerplate for embedded
     ...
 ```
 
+## 编译
+
+### 下载依赖
+
+```bash
+python ./fetch_repos.py
+```
+
+### 桌面端
+
+#### 工具链
+
+```bash
+sudo apt install build-essential cmake
+```
+
+#### 编译
+
+```bash
+mkdir build && cd build
+```
+```bash
+cmake .. && make
+```
+#### 运行
+
+```bash
+cd desktop
+```
+
+要先 cd 过去，因为序列化时用的相对路径 :(
+
+```bash
+./app_desktop_build
+```
