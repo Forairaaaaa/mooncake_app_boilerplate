@@ -175,7 +175,7 @@ StaticAsset_t* AssetPool::GetStaticAssetFromBin()
     auto asset_pool = new StaticAsset_t;
 
     // Read from bin
-    std::string bin_path = "AssetPool-VAMeter.bin";
+    std::string bin_path = "AssetPool.bin";
 
     std::ifstream inFile(bin_path, std::ios::binary);
     if (!inFile)
