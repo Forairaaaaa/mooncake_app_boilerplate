@@ -1,4 +1,5 @@
-# app_boilerplate
+# Mooncake app boilerplate
+
 Cpp cross-platform application boilerplate for embedded
 
 ### 文件树
