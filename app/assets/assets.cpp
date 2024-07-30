@@ -10,7 +10,7 @@
  */
 #include "assets.h"
 #include "localization/types.h"
-#include "spdlog/spdlog.h"
+#include <mooncake.h>
 #include <algorithm>
 #include <cstring>
 #include <iterator>
@@ -139,6 +139,7 @@ static bool _copy_file(std::string filePath, uint8_t* target)
  * @return true
  * @return false
  */
+#ifdef ENABLE_PNG_CONVERTOR
 static bool _copy_png_image(std::string filePath, uint16_t* target)
 {
     spdlog::info("try convert: {}", filePath);
@@ -156,6 +157,7 @@ static bool _copy_png_image(std::string filePath, uint16_t* target)
     spdlog::info("ok, image size: {} x {}, array length: {}", width, height, output_length);
     return true;
 }
+#endif
 
 StaticAsset_t* AssetPool::CreateStaticAsset()
 {
