@@ -15,12 +15,13 @@
 
 using namespace MOONCAKE::APPS;
 using namespace SYSTEM::INPUTS;
+using namespace SYSTEM::UI;
 
 // App name
 const char* AppTemplate_Packer::getAppName() { return "AppTemplate"; }
 
 // Theme color
-constexpr static uint32_t _theme_color = 0x3D7AF5;
+constexpr static uint32_t _theme_color = 0xFFFFFF;
 void* AppTemplate_Packer::getCustomData() { return (void*)(&_theme_color); }
 
 // Icon
@@ -33,6 +34,10 @@ void AppTemplate::onResume()
 
     // Render full screen to theme color
     HAL::GetCanvas()->fillScreen(_theme_color);
+    HAL::GetCanvas()->setTextScroll(true);
+    HAL::GetCanvas()->setBaseColor(_theme_color);
+    HAL::GetCanvas()->setTextColor(TFT_BLACK);
+    HAL::GetCanvas()->setTextSize(3);
     HAL::CanvasUpdate();
 }
 
@@ -43,6 +48,10 @@ void AppTemplate::onRunning()
     if (HAL::Millis() - _data.time_count > 1000)
     {
         spdlog::info("Hi");
+
+        HAL::GetCanvas()->printf("> Hi\n");
+        HAL::CanvasUpdate();
+
         _data.time_count = HAL::Millis();
     }
 
@@ -50,10 +59,20 @@ void AppTemplate::onRunning()
     Button::Update();
 
     if (Button::A()->wasClicked())
-        spdlog::info("encoder button clicked");
+    {
+        spdlog::info("button a clicked");
+
+        HAL::GetCanvas()->printf("> Btn A clicked\n");
+        HAL::CanvasUpdate();
+    }
 
     if (Button::A()->isHolding())
+    {
+        HAL::GetCanvas()->printf("> Bye\n");
+        HAL::CanvasUpdate();
+
         destroyApp();
+    }
 
     // ...
     // If you want to block here, feed the dog manually

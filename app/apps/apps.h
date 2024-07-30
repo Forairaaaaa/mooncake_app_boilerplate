@@ -40,10 +40,17 @@ inline void app_run_startup_anim(MOONCAKE::Mooncake* mooncake)
  */
 inline void app_install_default_startup_app(MOONCAKE::Mooncake* mooncake)
 {
-    // Launcher maybe
-    // auto launcher = new MOONCAKE::APPS::AppLauncher_Packer;
-    // mooncake->installApp(launcher);
-    // mooncake->createApp(launcher);
+    // Launcher or daemons
+    std::vector<MOONCAKE::APP_PACKER_BASE*> app_packers;
+
+    // app_packers.push_back(new MOONCAKE::APPS::AppLauncher_Packer);
+    app_packers.push_back(new MOONCAKE::APPS::AppTemplate_Packer);
+
+    for (const auto& i : app_packers)
+    {
+        mooncake->installApp(i);
+        mooncake->createAndStartApp(i);
+    }
 }
 
 /**
@@ -53,6 +60,6 @@ inline void app_install_default_startup_app(MOONCAKE::Mooncake* mooncake)
  */
 inline void app_install_apps(MOONCAKE::Mooncake* mooncake)
 {
-    mooncake->installApp(new MOONCAKE::APPS::AppTemplate_Packer);
+    // mooncake->installApp(new MOONCAKE::APPS::AppTemplate_Packer);
     /* Install app locator (Don't remove) */
 }

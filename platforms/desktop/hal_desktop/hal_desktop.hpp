@@ -53,10 +53,10 @@ public:
         _data.config.wifiSsid = "114514";
         _data.config.wifiPassword = "1919810";
 
-        // // Add key mapping
-        // auto panel = (lgfx::Panel_sdl*)_data.display->getPanel();
-        // panel->addKeyCodeMapping(SDLK_q, 0);
-        // panel->addKeyCodeMapping(SDLK_w, 1);
+        // Add key mapping
+        auto panel = (lgfx::Panel_sdl*)_data.display->getPanel();
+        panel->addKeyCodeMapping(SDLK_q, 0);
+        panel->addKeyCodeMapping(SDLK_w, 1);
         // panel->addKeyCodeMapping(SDLK_e, 2);
         // panel->addKeyCodeMapping(SDLK_r, 3);
         // panel->addKeyCodeMapping(SDLK_f, 4);
@@ -67,21 +67,11 @@ public:
     bool getButton(GAMEPAD::GamePadButton_t button) override
     {
         if (button == GAMEPAD::BTN_A)
-            return !lgfx::gpio_in(36);
-        // else if (button == GAMEPAD::BTN_LEFT)
-        //     return !lgfx::gpio_in(39);
-        // else if (button == GAMEPAD::BTN_RIGHT)
-        //     return !lgfx::gpio_in(37);
+            return !lgfx::gpio_in(0);
         else if (button == GAMEPAD::BTN_B)
-            return !lgfx::gpio_in(38);
-        // else if (button == GAMEPAD::BTN_SELECT)
-        //     return !lgfx::gpio_in(38);
-        // else if (button == GAMEPAD::BTN_UP)
-        //     return !lgfx::gpio_in(39);
-        // else if (button == GAMEPAD::BTN_DOWN)
-        //     return !lgfx::gpio_in(37);
-        else if (button == GAMEPAD::BTN_START)
-            return !lgfx::gpio_in(38);
+            return !lgfx::gpio_in(1);
+        // else if (button == GAMEPAD::BTN_START)
+        //     return !lgfx::gpio_in(2);
 
         return false;
     }

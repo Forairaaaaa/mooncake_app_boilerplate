@@ -100,7 +100,7 @@ void AssetPool::loadFont72(LGFX_SpriteFx* lgfxDevice) {}
 /* -------------------------------------------------------------------------- */
 /*                            Static asset generate                           */
 /* -------------------------------------------------------------------------- */
-#ifndef ESP_PLATFORM
+#ifdef PLATFORM_BUILD_DESKTOP
 
 /**
  * @brief Copy file into target as binary
@@ -131,6 +131,32 @@ static bool _copy_file(std::string filePath, uint8_t* target)
     return true;
 }
 
+/**
+ * @brief Convert png image into rgb565 and copy into target as binary
+ *
+ * @param filePath
+ * @param target
+ * @return true
+ * @return false
+ */
+static bool _copy_png_image(std::string filePath, uint16_t* target)
+{
+    spdlog::info("try convert: {}", filePath);
+    size_t output_length = 0;
+    int width = 0, height = 0;
+
+    ImageConversionError result = convertPNGToR5G6B5(filePath.c_str(), target, &output_length, &width, &height);
+
+    if (result != ImageConversionError::Success)
+    {
+        spdlog::error("convert failed: {}", static_cast<int>(result));
+        return false;
+    }
+
+    spdlog::info("ok, image size: {} x {}, array length: {}", width, height, output_length);
+    return true;
+}
+
 StaticAsset_t* AssetPool::CreateStaticAsset()
 {
     auto asset_pool = new StaticAsset_t;
@@ -140,7 +166,9 @@ StaticAsset_t* AssetPool::CreateStaticAsset()
     /*                                    Fonts                                   */
     /* -------------------------------------------------------------------------- */
 
-    // Copy your font here (or set pointer)
+    // Copy your font here (or set pointer) like:
+    // _copy_file("../../app/assets/fonts/ffff.vlw", asset_pool->Font.ffff);
+    // or:
     // std::memcpy(asset_pool->Font.montserrat_semibolditalic_24, montserrat_semibolditalic_24,
     // montserrat_semibolditalic_24_size);
 
@@ -148,7 +176,9 @@ StaticAsset_t* AssetPool::CreateStaticAsset()
     /*                                   Images                                   */
     /* -------------------------------------------------------------------------- */
 
-    // Copy your image here (or set pointer)
+    // Copy your image here (or set pointer) like:
+    // _copy_png_image("../../app/assets/images/aaaaa.png", asset_pool->Image.aaaaa);
+    // or:
     // std::memcpy(asset_pool->Image.AppLauncher.icon, image_data_icon, image_data_icon_size);
 
     return asset_pool;
@@ -194,4 +224,15 @@ StaticAsset_t* AssetPool::GetStaticAssetFromBin()
     spdlog::info("load asset pool from: {}", bin_path);
     return asset_pool;
 }
+#else
+
+StaticAsset_t* AssetPool::CreateStaticAsset()
+{
+    auto asset_pool = new StaticAsset_t;
+
+    // ...
+
+    return asset_pool;
+}
+
 #endif

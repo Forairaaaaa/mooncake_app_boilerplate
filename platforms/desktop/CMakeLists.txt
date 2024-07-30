@@ -78,6 +78,15 @@ set(EXTRA_INCS
     dependencies/LovyanGFX/src/
 )
 
+# PNG convertor
+option(ENABLE_PNG_CONVERTOR "Enable png convertor" OFF)
+if(ENABLE_PNG_CONVERTOR)
+    add_definitions(-DENABLE_PNG_CONVERTOR)
+    # libpng
+    find_package(PNG REQUIRED)
+    target_link_libraries(app_layer PUBLIC ${PNG_LIBRARY})
+endif()
+
 # Desktop build
 file(GLOB_RECURSE APP_DESKTOP_BUILD_SRCS
     platforms/desktop/*.cpp

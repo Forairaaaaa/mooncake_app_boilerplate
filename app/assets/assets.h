@@ -95,9 +95,12 @@ public:
 
 public:
     /* -------------------------- Generate static asset ------------------------- */
+#ifdef PLATFORM_BUILD_DESKTOP
     static StaticAsset_t* CreateStaticAsset();
-#ifndef ESP_PLATFORM
     static void CreateStaticAssetBin(StaticAsset_t* assetPool);
     static StaticAsset_t* GetStaticAssetFromBin();
+#else
+    // Dummy, or you just want simple asset pool
+    static StaticAsset_t* CreateStaticAsset();
 #endif
 };

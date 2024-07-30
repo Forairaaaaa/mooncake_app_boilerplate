@@ -10,6 +10,7 @@
  */
 #pragma once
 #include <cstddef>
+#include "rgb565_converter/rgb565_converter.h"
 
 /* ----------------------- Add your image declare here ---------------------- */
 
