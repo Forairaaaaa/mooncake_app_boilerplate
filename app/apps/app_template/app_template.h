@@ -8,6 +8,7 @@
  * @copyright Copyright (c) 2024
  *
  */
+#pragma once
 #include <cstdint>
 #include <mooncake.h>
 
