@@ -105,5 +105,26 @@ void SerialDesktop::setBaudrate(uint32_t baudrate)
     _serial->setBaudrate(baudrate);
 }
 
+size_t SerialDesktop::readline(std::string& buffer, size_t size, std::string eol)
+{
+    if (_serial == nullptr)
+        return 0;
+    return _serial->readline(buffer, size, eol);
+}
+
+std::string SerialDesktop::readline(size_t size, std::string eol)
+{
+    if (_serial == nullptr)
+        return "";
+    return _serial->readline(size, eol);
+}
+
+std::vector<std::string> SerialDesktop::readlines(size_t size, std::string eol)
+{
+    if (_serial == nullptr)
+        return std::vector<std::string>();
+    return _serial->readlines(size, eol);
+};
+
 #endif
 #endif

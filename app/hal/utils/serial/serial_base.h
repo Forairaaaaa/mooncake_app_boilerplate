@@ -44,9 +44,15 @@ namespace HAL_SERIAL
 
         size_t write(uint8_t* dataBuffer, size_t dataLen) override;
         size_t write(const std::string& data) override;
-
         size_t available() override;
         size_t read(uint8_t* dataBuffer, size_t dataLen) override;
+
+        // More from wjwwood/serial
+    public:
+        std::string read(size_t size = 1);
+        size_t readline(std::string& buffer, size_t size = 65536, std::string eol = "\n");
+        std::string readline(size_t size = 65536, std::string eol = "\n");
+        std::vector<std::string> readlines(size_t size = 65536, std::string eol = "\n");
     };
 #endif
 #endif
