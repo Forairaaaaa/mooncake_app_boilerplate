@@ -2,6 +2,8 @@
 cmake_minimum_required (VERSION 3.8)
 project(DesktopBuild)
 
+option(ENABLE_SERIAL_DESKTOP "Enable serial desktop" OFF)
+
 # LovyanGFX
 add_definitions(-DLGFX_SDL)
 
@@ -73,6 +75,14 @@ set(APP_LAYER_INCS
 add_library(app_layer ${APP_LAYER_SRCS})
 target_include_directories(app_layer PUBLIC ${APP_LAYER_INCS})
 target_link_libraries(app_layer PUBLIC mooncake smooth_ui_toolkit lovyangfx)
+
+# Serial
+if(ENABLE_SERIAL_DESKTOP)
+    add_definitions(-DENABLE_SERIAL_DESKTOP)
+    # Require: https://github.com/wjwwood/serial
+    find_package(serial REQUIRED)
+    target_link_libraries(app_layer PUBLIC serial)
+endif()
 
 set(EXTRA_INCS 
     dependencies/LovyanGFX/src/

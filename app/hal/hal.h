@@ -14,6 +14,7 @@
 #include <vector>
 #include <M5GFX.h>
 #include "utils/lgfx_fx/lgfx_fx.h"
+#include "utils/serial/serial_base.h"
 #include "types.h"
 
 /**
