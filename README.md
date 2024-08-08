@@ -8,7 +8,7 @@ Mooncake App [模板](https://github.com/Forairaaaaa/mooncake_app_boilerplate/tr
 
 ### HAL 硬件抽象层
 
-[HAL](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/app/hal/hal.h#L26) 硬件抽象层（单例+依赖注入），用于架空应用层。
+[HAL](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/app/hal/hal.h#L26) 硬件抽象层（单例+依赖注入），用于架空应用层
 
 不同的硬件只需要按需[派生](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/platforms/esp32s3/main/hal_esp32s3/hal_esp32s3.h#L13)出自己的HAL，并在初始化时[注入](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/platforms/esp32s3/main/app_main.cpp#L52)即可
 
@@ -16,7 +16,7 @@ Mooncake App [模板](https://github.com/Forairaaaaa/mooncake_app_boilerplate/tr
 
 ### AssetPool 资产池抽象
 
-[AssetPool](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/platforms/desktop/hal_desktop/hal_desktop.hpp#L21) 资产池抽象（单例+依赖注入），用于管理字体、图片、网页、多语言文本池等静态资源。
+[AssetPool](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/platforms/desktop/hal_desktop/hal_desktop.hpp#L21) 资产池抽象（单例+依赖注入），用于管理字体、图片、网页、多语言文本池等静态资源
 
 目的是将静态资源结构体化、可序列化：可以在桌面端把资产池[序列化](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/platforms/desktop/main.cpp#L22)为 bin 文件，序列化后的 bin 文件可以被[写入](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/platforms/esp32s3/upload_asset_pool.sh) 到 esp32 的特定分区，然后在 esp32 初始化时，将该分区的映射地址[注入](https://github.com/Forairaaaaa/mooncake_app_boilerplate/blob/main/platforms/esp32s3/main/app_main.cpp#L27)到资产池，可以减少app分区体积，加快调试上传速度
 
