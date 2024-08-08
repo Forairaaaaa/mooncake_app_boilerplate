@@ -1,6 +1,6 @@
 # Mooncake app boilerplate
 
-适用于嵌入式的跨平台 Mooncake App 基础样板，提供：
+适用于嵌入式应用的跨平台 App 样板，提供：
 
 ### Mooncake App 模板
 
