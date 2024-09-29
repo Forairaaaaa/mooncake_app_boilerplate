@@ -10,6 +10,7 @@
  */
 #include "hal.h"
 #include "hal/components/imu.h"
+#include "hal/components/system_ctrl.h"
 #include <memory>
 #include <mooncake_log.h>
 
@@ -59,20 +60,35 @@ void HAL::Destroy()
 /* -------------------------------------------------------------------------- */
 // 组件获取接口，如果当前没有实例，则懒加载一个基类，这样就算某个平台没有适配某个组件，也不会崩溃
 
-hal_components::SystemConfigBase* HAL::HalBase::SystemConfig()
+#if HAL_ENABLE_COMPONENT_SYSTEM_CONTROL
+hal_components::SystemControlBase* HAL::HalBase::SystemControl()
 {
-    if (!_base_data.system_config) {
-        mclog::tagWarn(_tag, "getting null system config, auto create base");
-        _base_data.system_config = std::make_unique<hal_components::SystemConfigBase>();
+    if (!_components.system_control) {
+        mclog::tagWarn(_tag, "getting null system config component");
+        _components.system_control = std::make_unique<hal_components::SystemControlBase>();
     }
-    return _base_data.system_config.get();
+    return _components.system_control.get();
 }
+#endif
 
+#if HAL_ENABLE_COMPONENT_IMU
 hal_components::ImuBase* HAL::HalBase::Imu()
 {
-    if (!_base_data.imu) {
-        mclog::tagWarn(_tag, "getting null imu, auto create base");
-        _base_data.imu = std::make_unique<hal_components::ImuBase>();
+    if (!_components.imu) {
+        mclog::tagWarn(_tag, "getting null imu component");
+        _components.imu = std::make_unique<hal_components::ImuBase>();
     }
-    return _base_data.imu.get();
+    return _components.imu.get();
 }
+#endif
+
+#if HAL_ENABLE_COMPONENT_SYSTEM_CONFIG
+hal_components::SystemConfigBase* HAL::HalBase::SystemConfig()
+{
+    if (!_components.system_config) {
+        mclog::tagWarn(_tag, "getting null system config component");
+        _components.system_config = std::make_unique<hal_components::SystemConfigBase>();
+    }
+    return _components.system_config.get();
+}
+#endif

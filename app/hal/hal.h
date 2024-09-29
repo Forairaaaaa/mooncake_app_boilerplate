@@ -11,8 +11,21 @@
 #pragma once
 #include <memory>
 #include <string>
-#include "components/system_config.h"
+#include "components/system_ctrl.h"
 #include "components/imu.h"
+#include "components/system_config.h"
+
+/* -------------------------------------------------------------------------- */
+/*                              Component Config                              */
+/* -------------------------------------------------------------------------- */
+// 组件裁剪
+#define HAL_ENABLE_COMPONENT_SYSTEM_CONTROL 1
+#define HAL_ENABLE_COMPONENT_IMU            1
+#define HAL_ENABLE_COMPONENT_BUTTON         1
+#define HAL_ENABLE_COMPONENT_TOUCHPAD       1
+#define HAL_ENABLE_COMPONENT_ENCODER        1
+#define HAL_ENABLE_COMPONENT_SYSTEM_CONFIG  1
+#define HAL_ENABLE_COMPONENT_BUZZER         1
 
 /**
  * @brief 硬件抽象层
@@ -58,27 +71,40 @@ public:
     /* -------------------------------------------------------------------------- */
     // 组件获取接口
 
+#if HAL_ENABLE_COMPONENT_SYSTEM_CONTROL
     /**
-     * @brief 系统配置组件
+     * @brief 系统控制组件
      *
-     * @return hal_components::SystemConfigBase*
      */
-    hal_components::SystemConfigBase* SystemConfig();
+    hal_components::SystemControlBase* SystemControl();
+#endif
 
+#if HAL_ENABLE_COMPONENT_IMU
     /**
      * @brief 陀螺仪组件
      *
      * @return hal_components::ImuBase*
      */
     hal_components::ImuBase* Imu();
+#endif
+
+#if HAL_ENABLE_COMPONENT_SYSTEM_CONFIG
+    /**
+     * @brief 系统配置组件
+     *
+     * @return hal_components::SystemConfigBase*
+     */
+    hal_components::SystemConfigBase* SystemConfig();
+#endif
 
 protected:
-    // 这里可以放一些共用的内部数据等
+    // 组件实例管理
     struct Data_t {
-        std::unique_ptr<hal_components::SystemConfigBase> system_config;
+        std::unique_ptr<hal_components::SystemControlBase> system_control;
         std::unique_ptr<hal_components::ImuBase> imu;
+        std::unique_ptr<hal_components::SystemConfigBase> system_config;
     };
-    Data_t _base_data;
+    Data_t _components;
 };
 
 /* -------------------------------------------------------------------------- */
