@@ -12,13 +12,13 @@
 #include <cstdint>
 #include <memory>
 #include <string>
+#include "components/system_config.h"
 
 /**
  * @brief 硬件抽象层
  *
  */
-class HAL
-{
+class HAL {
 public:
     virtual ~HAL() = default;
 
@@ -27,7 +27,10 @@ public:
      *
      * @return std::string
      */
-    virtual std::string type() { return "Base"; }
+    virtual std::string type()
+    {
+        return "Base";
+    }
 
     /**
      * @brief 初始化硬件
@@ -44,10 +47,20 @@ public:
     // virtual std::string fetchInfoFromHttp(std::string api) { return ""; }
     // 如果行为比较复杂的，可以封装成对象，参考 components 目录
 
+    /* -------------------------------------------------------------------------- */
+    /*                              Components Getter                             */
+    /* -------------------------------------------------------------------------- */
+    // 组件获取接口
+
+    std::shared_ptr<hal_components::SystemConfigBase> SystemConfig()
+    {
+        return _data.system_config;
+    }
+
 protected:
     // 这里可以放一些共用的内部数据
-    struct Data_t
-    {
+    struct Data_t {
+        std::shared_ptr<hal_components::SystemConfigBase> system_config;
     };
     Data_t _data;
 
