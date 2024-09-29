@@ -41,6 +41,15 @@ class HalBase {
 public:
     virtual ~HalBase() = default;
 
+    /* -------------------------------------------------------------------------- */
+    /*                                Hardware APIs                               */
+    /* -------------------------------------------------------------------------- */
+    // 硬件行为抽象，也就是创建自己的 HAL 时所要重写的方法
+    // 在这里加上你需要的虚函数方法
+    // 比如从某个接口拉取信息：
+    // virtual std::string fetchInfoFromHttp(std::string api) { return ""; }
+    // 如果行为比较复杂的，可以封装成组件，参考 components 目录
+
     /**
      * @brief 获取硬件抽象类型
      *
@@ -58,42 +67,19 @@ public:
     virtual void init() {}
 
     /* -------------------------------------------------------------------------- */
-    /*                                Hardware APIs                               */
-    /* -------------------------------------------------------------------------- */
-    // 硬件行为抽象，也就是创建自己的 HAL 时所要重写的方法
-    // 在这里加上你需要的虚函数方法
-    // 比如从某个接口拉取信息：
-    // virtual std::string fetchInfoFromHttp(std::string api) { return ""; }
-    // 如果行为比较复杂的，可以封装成组件，参考 components 目录
-
-    /* -------------------------------------------------------------------------- */
     /*                              Components Getter                             */
     /* -------------------------------------------------------------------------- */
     // 组件获取接口
 
 #if HAL_ENABLE_COMPONENT_SYSTEM_CONTROL
-    /**
-     * @brief 系统控制组件
-     *
-     */
     hal_components::SystemControlBase* SystemControl();
 #endif
 
 #if HAL_ENABLE_COMPONENT_IMU
-    /**
-     * @brief 陀螺仪组件
-     *
-     * @return hal_components::ImuBase*
-     */
     hal_components::ImuBase* Imu();
 #endif
 
 #if HAL_ENABLE_COMPONENT_SYSTEM_CONFIG
-    /**
-     * @brief 系统配置组件
-     *
-     * @return hal_components::SystemConfigBase*
-     */
     hal_components::SystemConfigBase* SystemConfig();
 #endif
 

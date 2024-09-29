@@ -11,36 +11,36 @@
 #pragma once
 #include <mooncake.h>
 #include <functional>
-#include "hal/hal.h"
-#include "shared/shared.h"
-#include "assets/assets.h"
 
-namespace APP
-{
-    // 依赖注入回调
-    struct SetupCallback_t
-    {
-        std::function<void()> sharedDataInjection = nullptr;
-        std::function<void()> AssetPoolInjection = nullptr;
-        std::function<void()> HalInjection = nullptr;
-    };
+/**
+ * @brief 应用层
+ *
+ */
+namespace APP {
 
-    /**
-     * @brief 初始化应用层
-     *
-     * @param callback
-     */
-    void Init(SetupCallback_t callback);
+// 依赖注入回调
+struct InitCallback_t {
+    std::function<void()> onAssetPoolInjection = nullptr;
+    std::function<void()> onHalInjection = nullptr;
+};
 
-    /**
-     * @brief 更新应用层
-     *
-     */
-    void Update();
+/**
+ * @brief 初始化应用层
+ *
+ * @param callback
+ */
+void Init(InitCallback_t callback);
 
-    /**
-     * @brief 销毁应用层
-     *
-     */
-    void Destroy();
+/**
+ * @brief 更新应用层
+ *
+ */
+void Update();
+
+/**
+ * @brief 销毁应用层
+ *
+ */
+void Destroy();
+
 } // namespace APP

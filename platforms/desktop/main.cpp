@@ -12,21 +12,17 @@
 
 int main()
 {
-    APP::SetupCallback_t callback;
+    APP::InitCallback_t callback;
 
     // 资产池依赖注入
-    callback.AssetPoolInjection = []() {};
+    callback.onAssetPoolInjection = []() {};
 
     // HAL 依赖注入
-    callback.HalInjection = []() {};
-
-    // 共享资源池依赖注入
-    callback.sharedDataInjection = []() {};
+    callback.onHalInjection = []() {};
 
     // 启动应用层
     APP::Init(callback);
-    while (1)
-    {
+    while (1) {
         APP::Update();
     }
     APP::Destroy();

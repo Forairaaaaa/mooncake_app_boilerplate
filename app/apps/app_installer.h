@@ -1,0 +1,25 @@
+/**
+ * @file app_installer.h
+ * @author Forairaaaaa
+ * @brief
+ * @version 0.1
+ * @date 2024-09-29
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+#pragma once
+#include <mooncake.h>
+#include <memory>
+/* Header files locator (Don't remove) */
+
+/**
+ * @brief App 安装回调
+ *
+ * @param mooncake
+ */
+inline void on_install_apps(mooncake::Mooncake* mooncake)
+{
+    // mooncake->installApp(std::make_unique<MyApp>());
+    /* Install app locator (Don't remove) */
+}
