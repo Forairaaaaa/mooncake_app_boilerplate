@@ -3,7 +3,7 @@
  * @author Forairaaaaa
  * @brief
  * @version 0.1
- * @date 2024-04-21
+ * @date 2024-09-29
  *
  * @copyright Copyright (c) 2024
  *
@@ -11,11 +11,13 @@
 #pragma once
 #include <mooncake.h>
 #include <functional>
-#include "assets/assets.h"
 #include "hal/hal.h"
+#include "shared/shared.h"
+#include "assets/assets.h"
 
 namespace APP
 {
+    // 依赖注入回调
     struct SetupCallback_t
     {
         std::function<void()> sharedDataInjection = nullptr;
@@ -23,7 +25,22 @@ namespace APP
         std::function<void()> HalInjection = nullptr;
     };
 
-    void Setup(SetupCallback_t callback);
-    void Loop();
+    /**
+     * @brief 初始化应用层
+     *
+     * @param callback
+     */
+    void Init(SetupCallback_t callback);
+
+    /**
+     * @brief 更新应用层
+     *
+     */
+    void Update();
+
+    /**
+     * @brief 销毁应用层
+     *
+     */
     void Destroy();
 } // namespace APP

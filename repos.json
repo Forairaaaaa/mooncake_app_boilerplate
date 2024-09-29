@@ -5,13 +5,13 @@
         "branch": "main"
     },
     {
-        "url": "https://github.com/Forairaaaaa/smooth_ui_toolkit.git",
-        "path": "dependencies/smooth_ui_toolkit",
+        "url": "https://github.com/Forairaaaaa/mooncake_log.git",
+        "path": "dependencies/mooncake_log",
         "branch": "main"
     },
     {
-        "url": "https://github.com/m5stack/M5GFX.git",
-        "path": "dependencies/M5GFX",
-        "branch": "master"
+        "url": "https://github.com/Forairaaaaa/mooncake_event.git",
+        "path": "dependencies/mooncake_event",
+        "branch": "main"
     }
 ]

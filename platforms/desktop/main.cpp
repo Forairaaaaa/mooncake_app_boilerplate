@@ -3,30 +3,33 @@
  * @author Forairaaaaa
  * @brief
  * @version 0.1
- * @date 2024-01-15
+ * @date 2024-09-29
  *
  * @copyright Copyright (c) 2024
  *
  */
 #include <app.h>
-#include "hal_desktop/hal_desktop.hpp"
 
-void setup()
+int main()
 {
     APP::SetupCallback_t callback;
 
-    callback.AssetPoolInjection = []() {
-        // AssetPool::InjectStaticAsset(AssetPool::CreateStaticAsset());
+    // 资产池依赖注入
+    callback.AssetPoolInjection = []() {};
 
-        // Create and output to bin
-        AssetPool::CreateStaticAssetBin(AssetPool::CreateStaticAsset());
-        // Load bin and inject
-        AssetPool::InjectStaticAsset(AssetPool::GetStaticAssetFromBin());
-    };
+    // HAL 依赖注入
+    callback.HalInjection = []() {};
 
-    callback.HalInjection = []() { HAL::Inject(new HAL_Desktop(320, 240)); };
+    // 共享资源池依赖注入
+    callback.sharedDataInjection = []() {};
 
-    APP::Setup(callback);
+    // 启动应用层
+    APP::Init(callback);
+    while (1)
+    {
+        APP::Update();
+    }
+    APP::Destroy();
+
+    return 0;
 }
-
-void loop() { APP::Loop(); }
