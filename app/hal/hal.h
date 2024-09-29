@@ -13,6 +13,7 @@
 #include <memory>
 #include <string>
 #include "components/system_config.h"
+#include "components/imu.h"
 
 /**
  * @brief 硬件抽象层
@@ -45,22 +46,38 @@ public:
     // 在这里加上你需要的虚函数方法
     // 比如从某个接口拉取信息：
     // virtual std::string fetchInfoFromHttp(std::string api) { return ""; }
-    // 如果行为比较复杂的，可以封装成对象，参考 components 目录
+    // 如果行为比较复杂的，可以封装成组件，参考 components 目录
 
     /* -------------------------------------------------------------------------- */
     /*                              Components Getter                             */
     /* -------------------------------------------------------------------------- */
     // 组件获取接口
 
+    /**
+     * @brief 系统配置组件
+     *
+     * @return std::shared_ptr<hal_components::SystemConfigBase>
+     */
     std::shared_ptr<hal_components::SystemConfigBase> SystemConfig()
     {
         return _data.system_config;
     }
 
+    /**
+     * @brief IMU 组件
+     *
+     * @return std::shared_ptr<hal_components::SystemConfigBase>
+     */
+    std::shared_ptr<hal_components::SystemConfigBase> Imu()
+    {
+        return _data.imu;
+    }
+
 protected:
-    // 这里可以放一些共用的内部数据
+    // 这里可以放一些共用的内部数据等
     struct Data_t {
         std::shared_ptr<hal_components::SystemConfigBase> system_config;
+        std::shared_ptr<hal_components::SystemConfigBase> imu;
     };
     Data_t _data;
 
