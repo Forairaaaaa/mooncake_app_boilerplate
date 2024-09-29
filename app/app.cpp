@@ -12,9 +12,15 @@
 #include "hal/hal.h"
 #include "shared/shared.h"
 #include "assets/assets.h"
+#include <memory>
 #include <mooncake_log.h>
 
-void APP::Init(SetupCallback_t callback) {}
+void APP::Init(SetupCallback_t callback)
+{
+    GetHAL();
+    GetHAL()->Imu();
+    GetHAL()->SystemConfig();
+}
 
 void APP::Update() {}
 

@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 3.8)
 project(DesktopBuild)
 
+set(CMAKE_CXX_STANDARD 17)
+
 add_definitions(-DPLATFORM_BUILD_DESKTOP)
 
 # Mooncake 

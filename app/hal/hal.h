@@ -9,7 +9,6 @@
  *
  */
 #pragma once
-#include <cstdint>
 #include <memory>
 #include <string>
 #include "components/system_config.h"
@@ -19,12 +18,18 @@
  * @brief 硬件抽象层
  *
  */
-class HAL {
+namespace HAL {
+
+/**
+ * @brief 硬件抽象基类
+ *
+ */
+class HalBase {
 public:
-    virtual ~HAL() = default;
+    virtual ~HalBase() = default;
 
     /**
-     * @brief HAL 类型
+     * @brief 获取硬件抽象类型
      *
      * @return std::string
      */
@@ -56,56 +61,59 @@ public:
     /**
      * @brief 系统配置组件
      *
-     * @return std::shared_ptr<hal_components::SystemConfigBase>
+     * @return hal_components::SystemConfigBase*
      */
-    std::shared_ptr<hal_components::SystemConfigBase> SystemConfig()
-    {
-        return _data.system_config;
-    }
+    hal_components::SystemConfigBase* SystemConfig();
 
     /**
-     * @brief IMU 组件
+     * @brief 陀螺仪组件
      *
-     * @return std::shared_ptr<hal_components::SystemConfigBase>
+     * @return hal_components::ImuBase*
      */
-    std::shared_ptr<hal_components::SystemConfigBase> Imu()
-    {
-        return _data.imu;
-    }
+    hal_components::ImuBase* Imu();
 
 protected:
     // 这里可以放一些共用的内部数据等
     struct Data_t {
-        std::shared_ptr<hal_components::SystemConfigBase> system_config;
-        std::shared_ptr<hal_components::SystemConfigBase> imu;
+        std::unique_ptr<hal_components::SystemConfigBase> system_config;
+        std::unique_ptr<hal_components::ImuBase> imu;
     };
-    Data_t _data;
-
-public:
-    /* -------------------------------------------------------------------------- */
-    /*                                  Singleton                                 */
-    /* -------------------------------------------------------------------------- */
-    // 提供一个可注入的全局单例
-
-    /**
-     * @brief 获取当前 HAL 实例
-     *
-     * @return HAL*
-     */
-    static HAL* Get();
-
-    /**
-     * @brief 注入 HAL，期间会调用 init() 以初始化 HAL
-     *
-     * @param hal
-     * @return true
-     * @return false
-     */
-    static bool Inject(std::unique_ptr<HAL> hal);
-
-    /**
-     * @brief 销毁当前 HAL 实例
-     *
-     */
-    static void Destroy();
+    Data_t _base_data;
 };
+
+/* -------------------------------------------------------------------------- */
+/*                                  Singleton                                 */
+/* -------------------------------------------------------------------------- */
+// 提供一个可注入的全局单例
+
+/**
+ * @brief 获取当前 HAL 实例
+ *
+ * @return HAL*
+ */
+HalBase* Get();
+
+/**
+ * @brief 注入 HAL，期间会调用 init() 以初始化 HAL
+ *
+ * @param hal
+ */
+void Inject(std::unique_ptr<HalBase> hal);
+
+/**
+ * @brief 销毁当前 HAL 实例
+ *
+ */
+void Destroy();
+
+} // namespace HAL
+
+/**
+ * @brief 获取当前 HAL 实例
+ *
+ * @return HAL::HalBase*
+ */
+inline HAL::HalBase* GetHAL()
+{
+    return HAL::Get();
+}

@@ -13,13 +13,13 @@
 namespace hal_components {
 
 /**
- * @brief IMU 组件基类，提供陀螺仪数据
+ * @brief IMU 组件基类，提供角速度、加速度和地磁等姿态数据
  *
  */
 class ImuBase {
 public:
     /**
-     * @brief 9轴数据
+     * @brief IMU 数据
      *
      */
     struct ImuData_t {
