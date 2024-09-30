@@ -31,6 +31,17 @@ add_library(app_layer ${APP_LAYER_SRCS})
 target_include_directories(app_layer PUBLIC ${APP_LAYER_INCS})
 target_link_libraries(app_layer PUBLIC mooncake mooncake_log mooncake_event)
 
+# Lvgl
+set(LV_CONF_INCLUDE_SIMPLE OFF)
+set(LV_CONF_PATH ../../lv_conf.h)
+add_subdirectory(dependencies/lvgl)
+target_link_libraries(app_layer PUBLIC lvgl lvgl_examples lvgl_demos)
+
+# SDL
+find_package(SDL2 REQUIRED SDL2)
+include_directories(PUBLIC ${SDL2_INCLUDE_DIRS})
+
+
 # 串口插件
 option(ENABLE_SERIAL_DESKTOP "Enable serial desktop" OFF)
 if(ENABLE_SERIAL_DESKTOP)
@@ -56,7 +67,7 @@ file(GLOB_RECURSE APP_DESKTOP_BUILD_SRCS
     platforms/desktop/*.c
 )
 add_executable(app_desktop_build ${APP_DESKTOP_BUILD_SRCS})
-target_link_libraries(app_desktop_build PUBLIC app_layer)
+target_link_libraries(app_desktop_build PUBLIC app_layer ${SDL2_LIBRARIES})
 
 # 设置构建路径
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build/desktop)

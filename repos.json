@@ -13,5 +13,10 @@
         "url": "https://github.com/Forairaaaaa/mooncake_event.git",
         "path": "dependencies/mooncake_event",
         "branch": "main"
+    },
+    {
+        "url": "https://github.com/lvgl/lvgl.git",
+        "path": "dependencies/lvgl",
+        "branch": "v9.2.0"
     }
 ]

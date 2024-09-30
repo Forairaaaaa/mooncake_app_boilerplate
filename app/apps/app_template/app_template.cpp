@@ -11,6 +11,9 @@
 #include "app_template.h"
 #include <mooncake.h>
 #include <mooncake_log.h>
+#include <lvgl.h>
+#include <lv_demos.h>
+#include <widgets/lv_example_widgets.h>
 
 using namespace mooncake;
 
@@ -31,11 +34,16 @@ void AppTemplate::onCreate()
 void AppTemplate::onOpen()
 {
     mclog::tagInfo(getAppInfo().name, "on open");
+
+    lv_demo_widgets();
+    // lv_example_button_1();
 }
 
 void AppTemplate::onRunning()
 {
     // mclog::tagInfo(getAppInfo().name, "on running");
+
+    lv_timer_handler();
 }
 
 void AppTemplate::onClose()

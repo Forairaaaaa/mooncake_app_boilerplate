@@ -21,5 +21,9 @@ public:
     void init() override
     {
         // 创建组件实例等..
+        lvgl_init();
     }
+
+private:
+    void lvgl_init();
 };
