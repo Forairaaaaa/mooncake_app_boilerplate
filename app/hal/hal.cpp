@@ -45,10 +45,13 @@ void HAL::Inject(std::unique_ptr<HalBase> hal)
     Destroy();
     _hal_instance = std::move(hal);
 
+    // 看看何方神圣
+    mclog::tagInfo(_tag, "injecting hal type: {}", _hal_instance->type());
+
     // 初始化
-    mclog::tagInfo(_tag, "init injected hal");
+    mclog::tagInfo(_tag, "invoke init");
     _hal_instance->init();
-    mclog::tagInfo(_tag, "done");
+    mclog::tagInfo(_tag, "hal injected");
 }
 
 void HAL::Destroy()

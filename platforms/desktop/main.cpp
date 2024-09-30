@@ -9,13 +9,19 @@
  *
  */
 #include <app.h>
+#include <memory>
+#include "hal/hal.h"
+#include "hal/hal_desktop.h"
 
 int main()
 {
+    // 应用层初始化回调
     APP::InitCallback_t callback;
 
-    // 硬件抽象层依赖注入
-    callback.onHalInjection = []() {};
+    callback.onHalInjection = []() {
+        // 注入桌面平台的硬件抽象
+        HAL::Inject(std::make_unique<HalDesktop>());
+    };
 
     // 应用层启动
     APP::Init(callback);
