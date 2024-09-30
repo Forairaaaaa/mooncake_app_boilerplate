@@ -9,6 +9,7 @@
  *
  */
 #include "app.h"
+#include "assets/assets.h"
 #include "hal/hal.h"
 #include "apps/app_installer.h"
 #include <memory>
@@ -56,9 +57,9 @@ void APP::Update()
     // 更新 Mooncake
     _mooncake->update();
 
-    // 重置看门狗
+    // 重置看门狗，建议实现这个看门狗，避免某个生命周期长时间阻塞
 #if HAL_ENABLE_COMPONENT_SYSTEM_CONTROL
-    GetHAL()->SystemControl()->feedTheDog();
+    GetHAL().SystemControl().feedTheDog();
 #endif
 }
 

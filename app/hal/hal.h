@@ -64,27 +64,27 @@ public:
     // 组件获取接口
 
 #if HAL_ENABLE_COMPONENT_SYSTEM_CONTROL
-    hal_components::SystemControlBase* SystemControl();
+    hal_components::SystemControlBase& SystemControl();
 #endif
 
 #if HAL_ENABLE_COMPONENT_IMU
-    hal_components::ImuBase* Imu();
+    hal_components::ImuBase& Imu();
 #endif
 
 #if HAL_ENABLE_COMPONENT_BUZZER
-    hal_components::BuzzerBase* Buzzer();
+    hal_components::BuzzerBase& Buzzer();
 #endif
 
 #if HAL_ENABLE_COMPONENT_TOUCHPAD
-    hal_components::TouchpadBase* Touchpad();
+    hal_components::TouchpadBase& Touchpad();
 #endif
 
 #if HAL_ENABLE_COMPONENT_ENCODER
-    hal_components::EncoderBase* Encoder();
+    hal_components::EncoderBase& Encoder();
 #endif
 
 #if HAL_ENABLE_COMPONENT_SYSTEM_CONFIG
-    hal_components::SystemConfigBase* SystemConfig();
+    hal_components::SystemConfigBase& SystemConfig();
 #endif
 
 protected:
@@ -120,9 +120,9 @@ protected:
 /**
  * @brief 获取当前 HAL 实例
  *
- * @return HalBase*
+ * @return HalBase&
  */
-HalBase* Get();
+HalBase& Get();
 
 /**
  * @brief 注入 HAL，期间会调用 init() 以初始化 HAL
@@ -142,9 +142,9 @@ void Destroy();
 /**
  * @brief 获取当前 HAL 实例
  *
- * @return HAL::HalBase*
+ * @return HAL::HalBase&
  */
-inline HAL::HalBase* GetHAL()
+inline HAL::HalBase& GetHAL()
 {
     return HAL::Get();
 }

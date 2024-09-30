@@ -9,6 +9,8 @@
  *
  */
 #pragma once
+#include <string>
+#include <cstdint>
 
 /**
  * @brief 资产层
@@ -22,11 +24,11 @@ namespace Asset {
  */
 struct AssetPool_t {
     // 比如文本：
-    // std::string text_hello = "我上早八";
+    std::string text_hello = "我上早八";
     // 颜色
-    // uint32_t color_text_hello = 0x114514;
+    std::uint32_t color_text_hello = 0x114514;
     // 图片
-    // uint16_t* image_icon_hello = nullptr;
+    std::uint16_t* image_icon_hello = nullptr;
 };
 
 /**
@@ -44,9 +46,9 @@ void on_asset_pool_init(AssetPool_t& assetPool);
 /**
  * @brief 获取资产池
  *
- * @return AssetPool_t*
+ * @return AssetPool_t&
  */
-AssetPool_t* Get();
+AssetPool_t& Get();
 
 /**
  * @brief 销毁当前 HAL 实例
@@ -78,3 +80,8 @@ void Inject(AssetPool_t* assetPool);
 // 注入到资产层以后，Get()->image_bye 就可以访问这个图片的数据了
 
 } // namespace Asset
+
+inline Asset::AssetPool_t& GetAsset()
+{
+    return Asset::Get();
+}

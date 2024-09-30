@@ -17,7 +17,7 @@ using namespace mooncake;
 static Asset::AssetPool_t* _asset_pool = nullptr;
 static const std::string _tag = "Asset";
 
-Asset::AssetPool_t* Asset::Get()
+Asset::AssetPool_t& Asset::Get()
 {
     // 如果没有注入过，则创建实例，并触发初始化回调
     if (!_asset_pool) {
@@ -25,7 +25,7 @@ Asset::AssetPool_t* Asset::Get()
         mclog::tagInfo(_tag, "create and init asset pool");
         on_asset_pool_init(*_asset_pool);
     }
-    return _asset_pool;
+    return *_asset_pool;
 }
 
 void Asset::Destroy()
