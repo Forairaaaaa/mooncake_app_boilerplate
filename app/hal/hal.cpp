@@ -9,8 +9,9 @@
  *
  */
 #include "hal.h"
-#include "hal/components/imu.h"
-#include "hal/components/system_ctrl.h"
+#include "hal/components/buzzer.h"
+#include "hal/components/encoder.h"
+#include "hal/components/touchpad.h"
 #include <memory>
 #include <mooncake_log.h>
 
@@ -90,5 +91,38 @@ hal_components::SystemConfigBase* HAL::HalBase::SystemConfig()
         _components.system_config = std::make_unique<hal_components::SystemConfigBase>();
     }
     return _components.system_config.get();
+}
+#endif
+
+#if HAL_ENABLE_COMPONENT_BUZZER
+hal_components::BuzzerBase* HAL::HalBase::Buzzer()
+{
+    if (!_components.buzzer) {
+        mclog::tagWarn(_tag, "getting null buzzer component");
+        _components.buzzer = std::make_unique<hal_components::BuzzerBase>();
+    }
+    return _components.buzzer.get();
+}
+#endif
+
+#if HAL_ENABLE_COMPONENT_TOUCHPAD
+hal_components::TouchpadBase* HAL::HalBase::Touchpad()
+{
+    if (!_components.touchpad) {
+        mclog::tagWarn(_tag, "getting null touchpad component");
+        _components.touchpad = std::make_unique<hal_components::TouchpadBase>();
+    }
+    return _components.touchpad.get();
+}
+#endif
+
+#if HAL_ENABLE_COMPONENT_ENCODER
+hal_components::EncoderBase* HAL::HalBase::Encoder()
+{
+    if (!_components.encoder) {
+        mclog::tagWarn(_tag, "getting null encoder component");
+        _components.encoder = std::make_unique<hal_components::EncoderBase>();
+    }
+    return _components.encoder.get();
 }
 #endif

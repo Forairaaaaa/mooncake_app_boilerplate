@@ -11,21 +11,13 @@
 #pragma once
 #include <memory>
 #include <string>
-#include "components/system_ctrl.h"
+#include "components/components_config.h"
+#include "components/system_control.h"
 #include "components/imu.h"
+#include "components/buzzer.h"
+#include "components/touchpad.h"
+#include "components/encoder.h"
 #include "components/system_config.h"
-
-/* -------------------------------------------------------------------------- */
-/*                              Component Config                              */
-/* -------------------------------------------------------------------------- */
-// 组件裁剪
-#define HAL_ENABLE_COMPONENT_SYSTEM_CONTROL 1
-#define HAL_ENABLE_COMPONENT_IMU            1
-#define HAL_ENABLE_COMPONENT_BUTTON         1
-#define HAL_ENABLE_COMPONENT_TOUCHPAD       1
-#define HAL_ENABLE_COMPONENT_ENCODER        1
-#define HAL_ENABLE_COMPONENT_SYSTEM_CONFIG  1
-#define HAL_ENABLE_COMPONENT_BUZZER         1
 
 /**
  * @brief 硬件抽象层
@@ -79,6 +71,18 @@ public:
     hal_components::ImuBase* Imu();
 #endif
 
+#if HAL_ENABLE_COMPONENT_BUZZER
+    hal_components::BuzzerBase* Buzzer();
+#endif
+
+#if HAL_ENABLE_COMPONENT_TOUCHPAD
+    hal_components::TouchpadBase* Touchpad();
+#endif
+
+#if HAL_ENABLE_COMPONENT_ENCODER
+    hal_components::EncoderBase* Encoder();
+#endif
+
 #if HAL_ENABLE_COMPONENT_SYSTEM_CONFIG
     hal_components::SystemConfigBase* SystemConfig();
 #endif
@@ -86,9 +90,24 @@ public:
 protected:
     // 组件实例管理
     struct Data_t {
+#if HAL_ENABLE_COMPONENT_SYSTEM_CONTROL
         std::unique_ptr<hal_components::SystemControlBase> system_control;
+#endif
+#if HAL_ENABLE_COMPONENT_IMU
         std::unique_ptr<hal_components::ImuBase> imu;
+#endif
+#if HAL_ENABLE_COMPONENT_BUZZER
+        std::unique_ptr<hal_components::BuzzerBase> buzzer;
+#endif
+#if HAL_ENABLE_COMPONENT_TOUCHPAD
+        std::unique_ptr<hal_components::TouchpadBase> touchpad;
+#endif
+#if HAL_ENABLE_COMPONENT_ENCODER
+        std::unique_ptr<hal_components::EncoderBase> encoder;
+#endif
+#if HAL_ENABLE_COMPONENT_SYSTEM_CONFIG
         std::unique_ptr<hal_components::SystemConfigBase> system_config;
+#endif
     };
     Data_t _components;
 };
@@ -101,7 +120,7 @@ protected:
 /**
  * @brief 获取当前 HAL 实例
  *
- * @return HAL*
+ * @return HalBase*
  */
 HalBase* Get();
 

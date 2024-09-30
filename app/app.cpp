@@ -39,8 +39,10 @@ void APP::Init(InitCallback_t callback)
     }
 
     /* -------------------------------- Mooncake -------------------------------- */
-    // 创建 Mooncake 实例
+    // Mooncake 初始化
     mclog::tagInfo(_tag, "create mooncake");
+
+    // 创建实例
     _mooncake.reset();
     _mooncake = std::make_unique<Mooncake>();
     _mooncake->logAboutMsg();

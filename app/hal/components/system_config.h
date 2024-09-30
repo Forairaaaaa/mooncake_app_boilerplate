@@ -3,7 +3,7 @@
  * @author Forairaaaaa
  * @brief
  * @version 0.1
- * @date 2024-09-29
+ * @date 2024-09-30
  *
  * @copyright Copyright (c) 2024
  *
@@ -13,7 +13,7 @@
 namespace hal_components {
 
 /**
- * @brief 系统配置组件基类，提供可以保存在文件系统的配置信息
+ * @brief 系统配置组件基类
  *
  */
 class SystemConfigBase {

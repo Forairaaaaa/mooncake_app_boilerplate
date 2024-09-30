@@ -1,9 +1,9 @@
 /**
- * @file system_ctrl.h
+ * @file system_control.h
  * @author Forairaaaaa
  * @brief
  * @version 0.1
- * @date 2024-09-29
+ * @date 2024-09-30
  *
  * @copyright Copyright (c) 2024
  *
@@ -14,7 +14,7 @@
 namespace hal_components {
 
 /**
- * @brief 系统操作组件基类，提供系统杂项控制接口
+ * @brief 系统操作组件基类
  *
  */
 class SystemControlBase {
@@ -22,7 +22,7 @@ public:
     ~SystemControlBase() = default;
 
     /**
-     * @brief 延时
+     * @brief 睡眠当前线程
      *
      * @param ms
      */

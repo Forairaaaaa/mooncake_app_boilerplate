@@ -3,7 +3,7 @@
  * @author Forairaaaaa
  * @brief
  * @version 0.1
- * @date 2024-09-29
+ * @date 2024-09-30
  *
  * @copyright Copyright (c) 2024
  *
@@ -13,7 +13,7 @@
 namespace hal_components {
 
 /**
- * @brief IMU 组件基类，提供角速度、加速度和地磁等姿态数据
+ * @brief IMU 组件基类
  *
  */
 class ImuBase {
@@ -47,7 +47,7 @@ public:
      *
      * @return const ImuData_t&
      */
-    const ImuData_t& getImuData()
+    const ImuData_t& getData()
     {
         return _imu_data;
     }
