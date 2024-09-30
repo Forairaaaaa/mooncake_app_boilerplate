@@ -1,0 +1,29 @@
+dependencies:
+  idf:
+    source:
+      type: idf
+    version: 5.1.4
+  m5stack/m5gfx:
+    component_hash: 9acfb70d059a137315c794b0e3db22bcb479b338d19ed60eaa658126b141a109
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.1.16
+  m5stack/m5unified:
+    component_hash: 33247909943855b9e784a52cb4ed957973246a7dd6fed5ffce202eda74c3f268
+    dependencies:
+    - name: m5stack/m5gfx
+      registry_url: https://components.espressif.com/
+      require: private
+      version: ^0.1.16
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.1.16
+direct_dependencies:
+- idf
+- m5stack/m5unified
+manifest_hash: a868a347c1fe8742cc0846833c1a58646baf18d10bd2089c39a1ab8be88a11e2
+target: esp32
+version: 2.0.0
