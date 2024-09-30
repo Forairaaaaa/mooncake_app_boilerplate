@@ -11,9 +11,9 @@
 #include "app.h"
 #include "hal/hal.h"
 #include "apps/app_installer.h"
-#include <memory>
 #include <mooncake.h>
 #include <mooncake_log.h>
+#include <string>
 
 using namespace mooncake;
 

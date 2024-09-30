@@ -1,5 +1,5 @@
 # Configs
-IDF_PATH=$HOME/esp/esp-idf-v5.1.3
+IDF_PATH=$HOME/esp/esp-idf-v5.3.1
 SERIAL_PORT=/dev/ttyACM0
 
 help() {

@@ -9,10 +9,8 @@
  *
  */
 #include "hal.h"
-#include "hal/components/buzzer.h"
-#include "hal/components/encoder.h"
-#include "hal/components/touchpad.h"
 #include <memory>
+#include <string>
 #include <mooncake_log.h>
 
 using namespace mooncake;

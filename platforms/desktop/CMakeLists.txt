@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 3.8)
 project(DesktopBuild)
 
+cmake_policy(SET CMP0077 NEW)
 set(CMAKE_CXX_STANDARD 17)
 
 add_definitions(-DPLATFORM_BUILD_DESKTOP)
