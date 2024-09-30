@@ -19,9 +19,10 @@
  *
  * @param mooncake
  */
-inline void on_install_apps(mooncake::Mooncake& mooncake)
+inline void on_install_apps()
 {
-    // mooncake.installApp(std::make_unique<MyApp>());
-    mooncake.installApp(std::make_unique<AppTemplate>());
+    // 安装 App
+    // mooncake::GetMooncake().installApp(std::make_unique<MyApp>());
+    mooncake::GetMooncake().installApp(std::make_unique<AppTemplate>());
     /* Install app locator (Don't remove) */
 }

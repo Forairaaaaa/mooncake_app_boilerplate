@@ -17,7 +17,6 @@
 
 using namespace mooncake;
 
-static std::unique_ptr<Mooncake> _mooncake;
 static const std::string _tag = "APP";
 
 void APP::Init(InitCallback_t callback)
@@ -42,19 +41,17 @@ void APP::Init(InitCallback_t callback)
     // Mooncake 初始化
     mclog::tagInfo(_tag, "create mooncake");
 
-    // 创建实例
-    _mooncake.reset();
-    _mooncake = std::make_unique<Mooncake>();
-    _mooncake->logAboutMsg();
+    // 踢一脚懒加载
+    GetMooncake();
 
     // 安装 App
-    on_install_apps(*_mooncake.get());
+    on_install_apps();
 }
 
 void APP::Update()
 {
     // 更新 Mooncake
-    _mooncake->update();
+    GetMooncake().update();
 
     // 重置看门狗，建议实现这个看门狗，避免某个生命周期长时间阻塞
 #if HAL_ENABLE_COMPONENT_SYSTEM_CONTROL
@@ -69,6 +66,6 @@ bool APP::IsDone()
 
 void APP::Destroy()
 {
-    _mooncake.reset();
+    DestroyMooncake();
     HAL::Destroy();
 }

@@ -3,7 +3,7 @@
  * @author Forairaaaaa
  * @brief
  * @version 0.1
- * @date 2024-09-30
+ * @date <date></date>
  *
  * @copyright Copyright (c) 2024
  *

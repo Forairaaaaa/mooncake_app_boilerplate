@@ -3,7 +3,7 @@
  * @author Forairaaaaa
  * @brief
  * @version 0.1
- * @date 2024-09-30
+ * @date <date></date>
  *
  * @copyright Copyright (c) 2024
  *
@@ -22,7 +22,7 @@ AppTemplate::AppTemplate()
 
 void AppTemplate::onCreate()
 {
-    mclog::tagInfo(getAppInfo().name, "onCreate");
+    mclog::tagInfo(getAppInfo().name, "on create");
 
     // 打开自己
     open();
@@ -30,15 +30,15 @@ void AppTemplate::onCreate()
 
 void AppTemplate::onOpen()
 {
-    mclog::tagInfo(getAppInfo().name, "onOpen");
+    mclog::tagInfo(getAppInfo().name, "on open");
 }
 
 void AppTemplate::onRunning()
 {
-    // mclog::tagInfo(getAppInfo().name, "onRunning");
+    // mclog::tagInfo(getAppInfo().name, "on running");
 }
 
 void AppTemplate::onClose()
 {
-    mclog::tagInfo(getAppInfo().name, "onClose");
+    mclog::tagInfo(getAppInfo().name, "on close");
 }
