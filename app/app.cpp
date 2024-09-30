@@ -9,7 +9,6 @@
  *
  */
 #include "app.h"
-#include "assets/assets.h"
 #include "hal/hal.h"
 #include "apps/app_installer.h"
 #include <memory>
@@ -49,7 +48,7 @@ void APP::Init(InitCallback_t callback)
     _mooncake->logAboutMsg();
 
     // 安装 App
-    on_install_apps(_mooncake.get());
+    on_install_apps(*_mooncake.get());
 }
 
 void APP::Update()
@@ -61,6 +60,11 @@ void APP::Update()
 #if HAL_ENABLE_COMPONENT_SYSTEM_CONTROL
     GetHAL().SystemControl().feedTheDog();
 #endif
+}
+
+bool APP::IsDone()
+{
+    return false;
 }
 
 void APP::Destroy()

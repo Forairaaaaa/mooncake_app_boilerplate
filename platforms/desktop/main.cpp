@@ -14,15 +14,12 @@ int main()
 {
     APP::InitCallback_t callback;
 
-    // 资产池依赖注入
-    callback.onAssetPoolInjection = []() {};
-
-    // HAL 依赖注入
+    // 硬件抽象层依赖注入
     callback.onHalInjection = []() {};
 
-    // 启动应用层
+    // 应用层启动
     APP::Init(callback);
-    while (1) {
+    while (!APP::IsDone()) {
         APP::Update();
     }
     APP::Destroy();

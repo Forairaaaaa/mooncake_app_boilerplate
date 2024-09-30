@@ -53,7 +53,7 @@ public:
     }
 
     /**
-     * @brief 初始化硬件
+     * @brief 在这里初始化硬件，以及组件的实例创建
      *
      */
     virtual void init() {}

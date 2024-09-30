@@ -11,6 +11,7 @@
 #pragma once
 #include <mooncake.h>
 #include <memory>
+#include "app_template/app_template.h"
 /* Header files locator (Don't remove) */
 
 /**
@@ -18,8 +19,9 @@
  *
  * @param mooncake
  */
-inline void on_install_apps(mooncake::Mooncake* mooncake)
+inline void on_install_apps(mooncake::Mooncake& mooncake)
 {
-    // mooncake->installApp(std::make_unique<MyApp>());
+    // mooncake.installApp(std::make_unique<MyApp>());
+    mooncake.installApp(std::make_unique<AppTemplate>());
     /* Install app locator (Don't remove) */
 }

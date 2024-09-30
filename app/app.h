@@ -38,6 +38,14 @@ void Init(InitCallback_t callback);
 void Update();
 
 /**
+ * @brief 结束力
+ *
+ * @return true
+ * @return false
+ */
+bool IsDone();
+
+/**
  * @brief 销毁应用层
  *
  */
