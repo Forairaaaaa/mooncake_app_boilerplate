@@ -13,7 +13,7 @@
 #include <hal/hal.h>
 #include "hal/hal_desktop.h"
 
-int main()
+void setup()
 {
     // 应用层初始化回调
     APP::InitCallback_t callback;
@@ -25,10 +25,9 @@ int main()
 
     // 应用层启动
     APP::Init(callback);
-    while (!APP::IsDone()) {
-        APP::Update();
-    }
-    APP::Destroy();
+}
 
-    return 0;
+void loop()
+{
+    APP::Update();
 }

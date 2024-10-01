@@ -21,5 +21,9 @@ public:
     void init() override
     {
         // 创建组件实例等..
+        _display_init();
     }
+
+private:
+    void _display_init();
 };
