@@ -40,7 +40,7 @@ target_link_libraries(app_layer PUBLIC lvgl lvgl_examples lvgl_demos)
 # SDL
 find_package(SDL2 REQUIRED SDL2)
 include_directories(PUBLIC ${SDL2_INCLUDE_DIRS})
-
+target_include_directories(lvgl PUBLIC ${SDL2_INCLUDE_DIRS})
 
 # 串口插件
 option(ENABLE_SERIAL_DESKTOP "Enable serial desktop" OFF)
