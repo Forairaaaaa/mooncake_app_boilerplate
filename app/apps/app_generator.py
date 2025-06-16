@@ -25,18 +25,11 @@ def toCamelCase(sentence):
     # 确保第一个字母是小写
     return ''.join([sentence[0].lower(), sentence[1:]])
 
-
-def toCamelCase(sentence):
-    words = sentence.replace('_', ' ').split()
-    camel_case = ''.join(word.capitalize() for word in words)
-    return camel_case
-
-
 def checkInputValid(input):
     # 检查字符是否有效
     if input == "":
         return False
-    if not re.match("^[a-zA-Z_\s]+$", input):
+    if not re.match("^[a-zA-Z_\\s]+$", input):
         return False
     if input == "template":
         return False
@@ -58,12 +51,19 @@ class PrintColor:
 
 
 def getAppName():
-    # 读取输入
-    while True:
-        user_input = input("input new app's name: ")
+    if len(sys.argv) > 1:
+        user_input = sys.argv[1]
         if checkInputValid(user_input):
-            break
+            print("get input from args: {}\n".format(user_input))
         else:
+            print("bad name from args, fallback to input")
+            user_input = ""
+    else:
+        user_input = ""
+
+    while not checkInputValid(user_input):
+        user_input = input("input new app's name: ")
+        if not checkInputValid(user_input):
             print("bad name, try again")
 
     print("get input: {}\n".format(user_input))
